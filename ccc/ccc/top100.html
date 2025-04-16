@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>top100 - Nhạc việt </title>
+    <link rel="stylesheet" href="assets/css/library.css">
+    <link href="assets/css/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
+            color: rgb(17, 16, 16);
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: rgb(3, 3, 3);
+            font-size: 20px;
+            font-weight: bold;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: rgb(23, 22, 22);
+            font-size: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        nav ul li i {
+            margin-right: 5px;
+        }
+        .library-container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .top100-section {
+            margin-top: 20px;
+        }
+        .top100-section h2 {
+            border-bottom: 2px solid #c0c1b8;
+            padding-bottom: 10px;
+        }
+        .top100-list {
+            list-style: none;
+            padding: 0;
+        }
+        .top100-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #e1dddd;
+            cursor: pointer;
+        }
+        .top100-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+        .artist-songs {
+            display: none;
+            margin-top: 20px;
+            background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .artist-songs ul {
+            list-style: none;
+            padding: 0;
+        }
+        .artist-songs li {
+            padding: 5px 0;
+            border-bottom: 1px solid #c3bebe;
+            cursor: pointer;
+        }
+        #top100-audio {
+            display: none;
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="index.html" class="logo">Nhạc Việt </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="bi bi-house-door"></i> Trang chủ</a></li>
+                    <li><a href="search.html"><i class="bi bi-search"></i> Tìm kiếm</a></li>
+                    <li><a href="monitor.html"><i class="bi bi-display"></i> Theo dõi</a></li>
+                    <li><a href="top100.html"><i class="bi bi-star"></i> Top100</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="library-container">
+        <h1> Top 100 bài hát hay nhất </h1>
+
+        <section class="top100-section">
+            <h2></h2>
+            <ul class="top100-list">
+                <li class="top100-item" onclick="playSongsWithList([{title: 'SỰ NGHIỆP CHƯỚNG  ', url: './assets/music/phao.mp3'},
+                {title: 'HÃY TRAO CHO ANH  ', url: './assets/music/HayTraoChoAnh.mp3'},
+                {title: 'SA VÀO NGUY HIỂM  ', url: './assets/music/SaVaoNguyHiem.mp3'},
+                {title: 'NHƯ ANH DÃ THẤYTHẤY EM  ', url: 'assets/music/NhuAnhDaThayEm-PhucXPFreakD-7370334.mp3'},
+                {title: 'XÓA HẾT ĐI  ', url: 'assets/music/XoaHetDi-NguyenAric-14859789.mp3'},
+                {title: 'CHUYỆN ĐÔI TA  ', url: 'assets/music/XoaHetDi-NguyenAric-14859789.mp3'},
+                {title: ' HẸN EM Ở LẦN YÊU THỨ HAI  ', url: 'assets/music/HenEmOLanYeuThu2-NguyennDangTuanVu-8865500.mp3'},
+                {title: 'LÀ BẠN KO THỂ YÊU   ', url: 'assets/music/LaBanKhongTheYeu-LouHoang-13539361.mp3'},
+                {title: ' CẢM ƠN VĨ DÃ KO ĐỢI NHAU ', url: 'assets/music/CamOnViDaKhongDoiNhau-VA-14480414.mp3'},
+                {title: ' TỪNG LÀ CỦA NHAU  ', url: 'assets/music/TungLaCuaNhau-BaoAnhTao-7818322.mp3'},
+                {title: 'Ừ THÌ THÔI ', url: 'assets/music/UThiThoi-TPAME-8901241.mp3'},
+                
+                ])">
+                    <img src="assets/img/khampha.png" alt="Song 1">
+                    <span>1.Top 1 tuần </span>
+                </li>
+                <li class="top100-item" onclick="playSongsWithList([{title: 'THAY TÔI YÊU CÔ ẤY  ', url: 'assets/music/yeu.mp3'},
+                {title: 'CÓ CHÀNG TRAI VIẾT LÊN CÂY ', url: 'assets/music/co chang trai viet len cay.mp3'},
+                {title: 'lụy tình  ', url: './assets/music/LuyTinh.mp3'},
+                {title: 'EM CƯỚI RỒI À   ', url: 'assets/music/EMCUOIROIA.mp3'},
+                {title: 'KHÓ VẼ NỤ CƯỜI   ', url: 'assets/music/KhoVeNuCuoi-.mp3'},
+                {title: ' PHẢI CHIA TAY THÔI ', url: 'assets/music/PHẢICHIA TAY THÔI .mp3'},
+                {title: 'TÌM EM   ', url: 'assets/music/TimEm-HoQuangHieu-.mp3'},
+                {title: 'MỘT BƯỚC YÊU VẠN DẶM ĐAU ', url: 'assets/music/MotBuocYeuVanDamDau-Isaac-7204674.mp3'},
+                {title: ' VẠN SỰ TÙY DUYÊN  ', url: 'assets/music/MotBuocYeuVanDamDau-Isaac-7204674.mp3'},
+                {title: 'SUÝT NỮA THÌ   ', url: 'assets/music/4rmsoc4gyu.mp3'},
+                ])">
+                    <img src="assets/img/ngungon.png" alt="Song 2">
+                    <span>2.Ca khúc buồn  </span>
+                </li>
+                <li class="top100-item" onclick="playSongsWithList([{title: 'MƯA THÁNG SÁU ', url: 'assets/music/MuaThang6-ZenPy-4033081.mp3'},
+                {title: 'THÁNG TƯ LỜI NÓI DỐI CỦA EM ', url: 'assets/music/ThangTuLaLoiNoiDoiCuaEmPiano.mp3'},
+                {title: 'vô tư', url: 'assets/music/VoTuRemix-.mp3'},
+                {title: ' SIMP GAI  ', url: 'assets/music/SimpGai.mp3'},
+                {title: 'StupidRichMan', url: 'assets/music/StupidRichMan-RPTMCK.mp3'},
+                {title: 'THỦ ĐÔ CYPHER  ', url: 'assets/music/ThuDo.mp3'},
+                {title: 'CON TRAI CƯNG  ', url: 'assets/music/ConTraiCung.mp3'},
+                {title: 'DƯA NHAU ĐI TRỐN  ', url: 'assets/music/DuaNhauDiTron-Nightcore-4266562.mp3'},
+                {title: 'EM CỦA NGÀY HÔM QUA  ', url: 'assets/music/emcủangàyhômqua.mp3'},
+                {title: ' ĐÔNG KIẾM EM ', url: 'assets/music/DongKiemEm-.mp3'},
+                {title: 'PHONG LONG  ', url: 'assets/music/PhongLong.mp3'},
+                ])">
+                    <img src="assets/img/danh cho ban.png" alt="Song 3">
+                    <span>3. Ca khúc nổi trội</span>
+                </li>
+            </ul>
+            <audio id="top100-audio" controls style="display: none;"></audio>
+        </section>
+
+        <section id="artistSongs" class="artist-songs"></section>
+    </main>
+
+    <footer>
+        <p>&copy; </p>
+    </footer>
+
+    <script>
+        let currentTrackIndex = 0;
+        let songList = [];
+
+        function playSongsWithList(tracks) {
+            songList = tracks;
+            currentTrackIndex = 0;
+            const audio = document.getElementById('top100-audio');
+            const songContainer = document.getElementById('artistSongs');
+
+            
+            let songListHtml = '<ul>';
+            songList.forEach((song, index) => {
+                songListHtml += `<li onclick="playSingle(${index})">${song.title}</li>`;
+            });
+            songListHtml += '</ul>';
+            songContainer.innerHTML = songListHtml;
+            songContainer.style.display = 'block';
+
+           
+            audio.style.display = 'block';
+
+            
+            audio.src = songList[currentTrackIndex].url;
+            audio.play();
+
+            
+            audio.onended = () => {
+                currentTrackIndex++;
+                if (currentTrackIndex < songList.length) {
+                    audio.src = songList[currentTrackIndex].url;
+                    audio.play();
+                } else {
+                    currentTrackIndex = 0;
+                }
+            };
+        }
+
+        function playSingle(index) {
+            const audio = document.getElementById('top100-audio');
+            currentTrackIndex = index;
+            audio.src = songList[currentTrackIndex].url;
+            audio.play();
+        }
+    </script>
+     <footer style="text-align: center; padding: 10px;">
+        <p>&copy; Chủ đầu tư ca nhạc VĂN VŨ.</p>
+    </footer>
+</body>
+</html>

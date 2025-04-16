@@ -1,0 +1,413 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Trang chủ</title>
+    <link href="assets/css/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <header></header>
+    <div class="home">
+        <section class="left">
+            <div class="img">
+                <a href="index.html"><img src="assets/img/z6494550019890_09c1b8492ce763d4d68e291382e23453.jpg" /></a>
+            </div>
+            <div class="list">
+                <ul>
+                    <li><a href="index.html"><i class="bi bi-house-door"></i> Trang chủ</a></li>
+                    <li><a href="search.html"><i class="bi bi-search"></i> Tìm kiếm</a></li>
+                    <li><a href="monitor.html"><i class="bi bi-display"></i> Theo dõi</a></li>
+                    <li><a href="ca.html"><i class="bi bi-music-note-beamed"></i> nghe nhạc </a></li> 
+                </ul>
+                <hr />
+                <ul>
+                    <li><a href="category.html"><i class="bi bi-tags-fill"></i> Thể loại</a></li>
+                    <li><a href="top100.html"><i class="bi bi-star"></i> Top 100</a></li>
+                    <li><a href="thuvien.html"><i class="bi bi-list-nested"></i> Thư viện</a></li>
+                    
+                </ul>
+            </div>
+        </section>
+        <section class="right">
+            <div class="account-section" style="display: flex; align-items: center; gap: 10px;">
+                <!-- Nút VIP -->
+                <button class="button-vip" id="accountVIP" onclick="toggleVIPForm()">Nâng cấp VIP</button>
+            
+                <!-- Nút cài đặt (ẩn trước, hiện khi đăng nhập) -->
+                <div style="position: relative;">
+                    <button id="settingButton" class="button-setting" style="display: none;" onclick="toggleSettingsMenu()">
+                        <i class="bi bi-gear"></i>
+                    </button>
+            
+                    <div id="settings-menu" style="display: none; position: absolute; top: 100%; right: 0; background: white; border: 1px solid #ccc; padding: 10px; border-radius: 8px; z-index: 9999; width: 150px;">
+                        <button onclick="logout()" style="width: 100%; padding: 8px; background-color: #f4f4f4; border: none; text-align: left;">Đăng xuất</button>
+                        <!-- Nút Hủy VIP: chỉ hiển thị khi trạng thái VIP đang bật -->
+                        <button id="cancelVipBtn" onclick="cancelVIP()" style="width: 100%; padding: 8px; background-color: #f4f4f4; border: none; text-align: left; display: none;">Hủy VIP</button>
+                    </div>
+                </div>
+            
+                <!-- Nút tài khoản -->
+                <button type="button" class="button-img" id="accountButton" onclick="handleAccountClick()">Đăng nhập</button>
+            
+                <!-- Form đăng nhập -->
+                <div id="login-form" style="display: none; position: fixed; top: 25%; left: 50%; transform: translate(-50%, -50%); background: #c7a3a3; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.3); z-index: 9999;">
+                    <h4>Đăng nhập</h4>
+                    <form onsubmit="handleLogin(event)">
+                        <input type="text" id="username" placeholder="Tên đăng nhập" required style="display:block; margin-bottom:10px; width:100%; padding:5px;">
+                        <input type="password" id="password" placeholder="Mật khẩu" required style="display:block; margin-bottom:10px; width:100%; padding:5px;">
+                        <div style="text-align: right;">
+                            <button type="submit">Đăng nhập</button>
+                            <button type="button" onclick="toggleLoginForm()">Hủy</button>
+                        </div>
+                    </form>
+                </div>
+            
+                <!-- Form nâng cấp VIP -->
+                <div id="vip-form" style="display: none; position: fixed; top: 30%; left: 50%; transform: translate(-50%, -50%); background: #d2aaaa; color: #000; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.3); z-index: 9999; width: 320px;">
+                    <h4>Chọn gói VIP</h4>
+                    <form id="vipSelectionForm">
+                        <label><input type="radio" name="vipPackage" value="1 tháng - 50.000₫" required> 1 tháng - 50.000₫</label><br>
+                        <label><input type="radio" name="vipPackage" value="3 tháng - 130.000₫"> 3 tháng - 130.000₫</label><br>
+                        <label><input type="radio" name="vipPackage" value="12 tháng - 480.000₫"> 12 tháng - 480.000₫</label><br><br>
+                        <div style="text-align: right;">
+                            <button type="button" onclick="confirmVIP()">Xác nhận</button>
+                            <button type="button" onclick="toggleVIPForm()">Hủy</button>
+                        </div>
+                    </form>
+                </div>
+            
+                <!-- QR Payment -->
+                <div id="qr-payment" style="display:none; position: fixed; top: 25%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.3); z-index: 10000; text-align: center;">
+                    <h4>Quét mã để thanh toán</h4>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=ThanhToanVIP" alt="QR Code thanh toán" style="margin: 10px 0;">
+                    <p>Vui lòng quét mã bằng ứng dụng ngân hàng hoặc ví điện tử của bạn.</p>
+                    <button onclick="finishPayment()">Đã thanh toán</button>
+                    <button onclick="closeQR()">Hủy</button>
+                </div>
+            </div>
+            
+            <!-- CSS -->
+            <style>
+                #settings-menu {
+                    display: none;
+                    position: absolute;
+                    top: 40px;
+                    right: 0;
+                    background: white;
+                    border: 1px solid #ccc;
+                    padding: 10px;
+                    border-radius: 8px;
+                    z-index: 9999;
+                    width: 200px;
+                }
+            
+                #settings-menu button {
+                    width: 100%;
+                    padding: 8px;
+                    background-color: #f4f4f4;
+                    border: none;
+                    margin-top: 10px;
+                    text-align: left;
+                }
+            
+                #settings-menu button:hover {
+                    background-color: #e0e0e0;
+                }
+            
+                .button-vip, .button-setting, .button-img {
+                    border: 1px solid #000;
+                    background: transparent;
+                    padding: 6px 10px;
+                    cursor: pointer;
+                }
+            
+                .button-setting i {
+                    font-size: 1.2em;
+                }
+            </style>
+            
+            <!-- Script xử lý -->
+            <script>
+                let isLoggedIn = false;
+                let isVIP = false;
+                let currentUsername = "";
+            
+                // Hàm toggle form đăng nhập
+                function toggleLoginForm() {
+                    const loginForm = document.getElementById("login-form");
+                    const currentDisplay = window.getComputedStyle(loginForm).display;
+                    loginForm.style.display = currentDisplay === "none" ? "block" : "none";
+                }
+            
+                // Hàm toggle menu cài đặt
+                function toggleSettingsMenu() {
+                    const menu = document.getElementById("settings-menu");
+                    const currentDisplay = window.getComputedStyle(menu).display;
+                    menu.style.display = currentDisplay === "none" ? "block" : "none";
+                }
+            
+                // Xử lý đăng nhập
+                function handleLogin(event) {
+                    event.preventDefault();
+            
+                    const usernameInput = document.getElementById("username");
+                    const passwordInput = document.getElementById("password");
+            
+                    const username = usernameInput.value;
+                    const password = passwordInput.value;
+            
+                    if (username && password) {
+                        isLoggedIn = true;
+                        currentUsername = username;
+                        document.getElementById("login-form").style.display = "none";
+                        updateLoginUI();
+                    } else {
+                        alert("Vui lòng nhập tài khoản và mật khẩu.");
+                    }
+                }
+                // Xử lý đăng xuất
+                    function logout() {
+                        isLoggedIn = false;
+                        isVIP = false;  // Hủy trạng thái VIP khi đăng xuất
+                        currentUsername = "";
+
+                        // Reset các phần tử giao diện
+                        const accountButton = document.getElementById("accountButton");
+                        accountButton.innerHTML = "Đăng nhập";  // Đặt lại text cho nút đăng nhập
+                        document.getElementById("settingButton").style.display = "none";  // Ẩn nút cài đặt
+
+                        // Ẩn menu cài đặt
+                        document.getElementById("settings-menu").style.display = "none";
+
+                        // Reset VIP
+                        const vipButton = document.getElementById("accountVIP");
+                        vipButton.innerHTML = "Nâng cấp VIP";  // Đặt lại text cho nút VIP
+                        vipButton.disabled = false;  // Kích hoạt lại nút VIP
+                        vipButton.style.backgroundColor = "";
+                        vipButton.style.color = "";
+
+                        // Đảm bảo form đăng nhập hiển thị
+                        toggleLoginForm();  // Hiển thị lại form đăng nhập nếu cần
+
+                        alert("Bạn đã đăng xuất thành công!");
+                    }
+
+            
+                // Cập nhật giao diện sau khi đăng nhập hoặc đăng xuất
+                function updateLoginUI() {
+                    const accountButton = document.getElementById("accountButton");
+                    if (isLoggedIn) {
+                        accountButton.innerHTML = `<i class="bi bi-person-circle" style="font-size: 1.2em; margin-right: 5px;"></i> ${currentUsername}`;
+                        document.getElementById("settingButton").style.display = "inline-block";
+                    } else {
+                        accountButton.innerHTML = "Đăng nhập";
+                        document.getElementById("settingButton").style.display = "none";
+                    }
+            
+                    // Hiển thị hoặc ẩn nút VIP
+                    const vipButton = document.getElementById("accountVIP");
+                    if (isVIP) {
+                        vipButton.textContent = "VIP";
+                        vipButton.disabled = true;
+                        vipButton.style.backgroundColor = "#a44f5a";  // Màu VIP
+                        vipButton.style.color = "#fff";
+                    } else {
+                        vipButton.textContent = "Nâng cấp VIP";
+                        vipButton.disabled = false;
+                        vipButton.style.backgroundColor = "";
+                        vipButton.style.color = "";
+                    }
+            
+                    // Ẩn hoặc hiển thị nút "Hủy VIP"
+                    const cancelVipBtn = document.getElementById("cancelVipBtn");
+                    cancelVipBtn.style.display = isVIP ? "block" : "none";
+                }
+            
+                // Xử lý đăng xuất
+                function logout() {
+                    isLoggedIn = false;
+                    isVIP = false;  // Hủy trạng thái VIP khi đăng xuất
+                    currentUsername = "";
+            
+                    // Reset các phần tử giao diện
+                    const accountButton = document.getElementById("accountButton");
+                    accountButton.innerHTML = "Đăng nhập";
+                    document.getElementById("settingButton").style.display = "none";
+                    document.getElementById("settings-menu").style.display = "none";
+            
+                    // Reset VIP
+                    const vipButton = document.getElementById("accountVIP");
+                    vipButton.innerHTML = "Nâng cấp VIP";
+                    vipButton.disabled = false;
+                    vipButton.style.backgroundColor = "";
+                    vipButton.style.color = "";
+            
+                    updateLoginUI();
+                    alert("Bạn đã đăng xuất thành công!");
+                }
+            
+                // Hàm nâng cấp VIP
+                function toggleVIPForm() {
+                    const vipForm = document.getElementById("vip-form");
+                    vipForm.style.display = vipForm.style.display === "none" ? "block" : "none";
+                }
+            
+                // Xử lý chọn gói VIP
+                function confirmVIP() {
+                    const form = document.getElementById("vipSelectionForm");
+                    const selectedPackage = form.querySelector('input[name="vipPackage"]:checked');
+                    
+                    if (selectedPackage) {
+                        isVIP = true;
+                        alert("Bạn đã nâng cấp lên VIP: " + selectedPackage.value);
+                        toggleVIPForm();
+                        updateLoginUI();
+                    } else {
+                        alert("Vui lòng chọn gói VIP.");
+                    }
+                }
+            
+                // Đóng form thanh toán QR
+                function closeQR() {
+                    document.getElementById("qr-payment").style.display = "none";
+                }
+            
+                // Xử lý thanh toán QR
+                function finishPayment() {
+                    document.getElementById("qr-payment").style.display = "none";
+                    alert("Thanh toán thành công!");
+                }
+            
+                // Hàm xử lý tài khoản khi click
+                function handleAccountClick() {
+                    if (!isLoggedIn) {
+                        toggleLoginForm();  // Hiển thị form đăng nhập nếu chưa đăng nhập
+                    } else {
+                        toggleSettingsMenu();  // Hiển thị menu cài đặt nếu đã đăng nhập
+                    }
+                }
+            </script>
+            
+                
+            
+            
+            
+            <section class="main-carousel">
+                <div id="main-carousel" class="carousel slide" data-bs-ride="true" style="height: 560px;width: 1079.19px">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#main-carousel" data-bs-slide-to="0" class="active"></button>
+                        <button type="button" data-bs-target="#main-carousel" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#main-carousel" data-bs-slide-to="2"></button>
+                        <button type="button" data-bs-target="#main-carousel" data-bs-slide-to="3"></button>
+                        <button type="button" data-bs-target="#main-carousel" data-bs-slide-to="4"></button>
+                        <button type="button" data-bs-target="#main-carousel" data-bs-slide-to="5"></button>
+                        <button type="button" data-bs-target="#main-carousel" data-bs-slide-to="0 "></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="assets/img/bắclinh.jpg" style="height: 550px;width: 1079.19px" />
+                            <a href="ca.html" style="text-decoration: none; color: inherit;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/img/st.jpg" style="height: 550px;width: 1079.19px" />
+                            <a href="ca.html" style="text-decoration: none; color: inherit;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/img/maxresdefault.jpg" style="height: 550px;width: 1079.19px" />
+                            <a href="ca.html" style="text-decoration: none; color: inherit;">
+                        </div>
+                        <div class="carousel-item">
+                          <img src="assets/img/635k-view-premiere-15620590708781264015848.webp" style="height: 550px;width: 1079.19px" />
+                          <a href="ca.html" style="text-decoration: none; color: inherit;">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="assets/img/su-nghiep-chuong-phao-1742625205361982335510-0-0-429-820-crop-17426252185371855643686.webp" style="height: 550px;width: 1079.19px" />
+                        <a href="ca.html" style="text-decoration: none; color: inherit;">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="assets/img/Tai-sinh-cua-ca-si-Tung-Duong-lot-nhieu-bang.jpg" style="height: 550px;width: 1079.19px" />
+                      <a href="ca.html" style="text-decoration: none; color: inherit;">
+                  </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#main-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#main-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </section>
+            <div class="row product-list">
+              <div class="col-lg-4 " style="text-align: center">
+                <div class="bo1">
+                    <div class="border">
+                        <a href="dau.html" style="text-decoration: none; color: inherit;">
+                            <b>Tuyển tập hàng đầu của bạn</b>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+                <div class="col-lg-4 " style="text-align: center">
+                  <div class="bo2">
+                    <div class="border">
+                        <a href="nhạc.html" style="text-decoration: none; color: inherit;">
+                            <b>Tuyển tập nhạc hay nhất của các nghệ sĩ</b>
+                        </a>
+                    </div>
+                </div>
+                
+                </div>
+                <div class="col-lg-4 " style="text-align: center">
+                  <div class="bo3">
+                      <div class="border">
+                          <a href="album.html" style="text-decoration: none; color: inherit;">
+                              <b>Album hay nhất</b>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              
+            </div>
+        </section>
+        <script src="assets/scripts/bootstrap.bundle.js"></script>
+        <script>
+            function upgradeVIP() {
+                let confirmPayment = confirm("Bạn có muốn thanh toán để nâng cấp VIP không?");
+                if (confirmPayment) {
+                    alert("Thanh toán thành công! Bạn đã nâng cấp VIP thành công .");
+                    document.querySelector(".button-vip").innerText = "VIP";
+                    document.querySelector(".button-vip").disabled = true;
+                } else {
+                    alert("Nâng cấp VIP bị hủy.");
+                }
+            }
+            
+            function showLoginForm() {
+                let username = prompt("Nhập tên đăng nhập:");
+                if (username) {
+                    alert("Chào mừng, " + username + "!");
+                    document.querySelector(".button-img").innerText = username;
+                }
+            }
+            
+            function toggleSettingsMenu() {
+                let menu = document.getElementById("settings-menu");
+                menu.style.display = menu.style.display === "none" ? "block" : "none";
+            }
+            
+            function logout() {
+                alert("Bạn đã đăng xuất thành công!");
+                document.querySelector(".button-img").innerText = "Đăng nhập";
+            }
+        </script>
+    </div>
+    <footer style="text-align: center; padding: 10px;">
+        <p>&copy; Chủ đầu tư ca nhạc VĂN VŨ.</p>
+    </footer>
+</body>
+</html>

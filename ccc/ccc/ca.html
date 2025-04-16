@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Phát tất cả các ca khúc</title>
+    <link rel="stylesheet" href="assets/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .left {
+            width: 250px;
+            background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
+            color: rgb(31, 29, 29);
+            padding: 20px;
+            height: 100vh;
+        }
+        .left a {
+            color: rgb(25, 23, 23);
+            text-decoration: none;
+        }
+        .left ul {
+            list-style: none;
+            padding: 0;
+        }
+        .left ul li {
+            margin-bottom: 15px;
+        }
+        .main {
+            flex: 1;
+            padding: 40px;
+            background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
+        }
+        .track {
+            margin-bottom: 20px;
+        }
+        #playlist li {
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="left">
+        <div class="img" style="text-align:center; margin-bottom:20px;">
+            <a href="index.html"><img src="assets/img/z6494550019890_09c1b8492ce763d4d68e291382e23453.jpg" style="width:80%;" /></a>
+        </div>
+        <div class="list">
+            <ul>
+                <li><a href="index.html"><i class="bi bi-house-door"></i>&nbsp;&nbsp;Trang chủ</a></li>
+                <li><a href="search.html"><i class="bi bi-search"></i>&nbsp;&nbsp;Tìm kiếm</a></li>
+                <li><a href="monitor.html"><i class="bi bi-display"></i>&nbsp;&nbsp;Theo dõi</a></li>
+                
+            </ul>
+            <hr style="width:80%;margin:auto" />
+            <ul>
+                <li><a href="category.html"><i class="bi bi-tags-fill"></i>&nbsp;&nbsp;Thể loại</a></li>
+                <li><a href="top100.html"><i class="bi bi-star"></i>&nbsp;&nbsp;Top 100</a></li>
+                <li><a href="thuvien.html"><i class="bi bi-list-nested"></i>&nbsp;&nbsp;Thư viện</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main">
+        <h2>Phát tất cả các ca khúc</h2>
+        <audio id="main-audio" controls style="width: 100%; margin-bottom: 20px;"></audio>
+        <ul id="playlist">
+            <li data-src="assets/music/4rmsoc4gyu.mp3">Suýt nữa thì - TÙNG </li>
+            <li data-src="assets/music/aloi.mp3">À lôi - Double 2T</li>
+            <li data-src="assets/music/AmThamBenEm-SonTungMTP-4750620.mp3">Âm thầm bên em - SƠN TÙNG </li>
+            <li data-src="assets/music/co chang trai viet len cay.mp3">Có chàng trai viết lên cây - PHAN MẠNH QUỲNH </li>
+            <li data-src="assets/music/ConTraiCung.mp3">Con trai cưng - Bray</li>
+            <li data-src="assets/music/DayTuiCachYeu.mp3">Đây tui cách yêu - Tlinh</li>
+            <li data-src="assets/music/DuaNhauDiTron-Nightcore-4266562.mp3">Đưa nhau đi trốn - ĐEN VÂU </li>
+            <li data-src="assets/music/HayTraoChoAnh.mp3">Hãy trao cho anh - SƠN TÙNG </li>
+            <li data-src="assets/music/honcayeu.mp3">Hơn cả yêu -ĐỨC PHÚC </li>
+            <li data-src="assets/music/luytinh.mp3">Lụy tình - TRUNG DIO </li>
+            <li data-src="assets/music/phao.mp3">Sự nghiệp chướng - PHÁO </li>
+            <li data-src="assets/music/AnhHuaAnhKhongKhoc-.mp3">Anh hứa không khóc  - KHÁNH TRUNG  </li>
+            <li data-src="assets/music/CamOnViDaKhongDoiNhau-VA-14480414.mp3">Cảm ơn vì đã không đợi   - ANH </li>
+            <li data-src="assets/music/CaoOc20-BRayDatGMasewKICM-6008352.mp3">Cao ốc 2020  ĐẠTG - BRAY </li>
+            <li data-src="assets/music/ChuyenDoiTa-EmceeLDaLAB-7120974.mp3">Chuyện đôi ta   - EMCO </li>
+            <li data-src="assets/music/cohenvoithanhxuan-MONSTAR-7050201.mp3">Có hẹn với thanh xuân   - MONTAS </li>
+            <li data-src="assets/music/DongKiemEm-.mp3">Đông kiếm em   - VŨ </li>
+            <li data-src="assets/music/HenEmOLanYeuThu2-NguyennDangTuanVu-8865500.mp3">Hen em ở lần yêu thứ 2   - BRAY  </li>
+            <li data-src="assets/music/DungKhocKhiAnhRaDi.mp3"> Đừng khóc khi anh đi   - BINZ </li>
+            <li data-src="assets/music/emcủangàyhômqua.mp3"> Em của ngày hôm qua  - SƠN TÙNG </li>
+            <li data-src="assets/music/EMCUOIROIA.mp3"> Em cưới rồi à   - THANH HƯNG </li>
+            <li data-src="assets/music/KhoVeNuCuoi-.mp3"> Khó vẽ nụ cười   - DẠTG - DU UYÊN  </li>
+            <li data-src="assets/music/LaBanKhongTheYeu-LouHoang-13539361.mp3"> Là bạn ko thể yêu   - LOU HOÀNG  </li>
+            <li data-src="assets/music/LoiTamBietChuaNoi-GREYDDoanTheLanOrange-7613756.mp3"> Lời tạm biệt chưa nói  -GREY  </li>
+            <li data-src="assets/music/MANG .mp3"> Mang tiền về cho mẹ   - ĐEN VÂU  </li>
+            <li data-src="assets/music/MatKetNoi-.mp3"> Mất kết nối   - DƯƠNGDOMIC  </li>
+            <li data-src="assets/music/MoCover-ThaiVu-5832747.mp3"> Mơ  - VŨ  </li>
+            <li data-src="assets/music/MotBuocYeuVanDamDau-Isaac-7204674.mp3"> Một bước yêu vạn dặm đau    - MR.SIRO  </li>
+            <li data-src="assets/music/MuaCuaTroiMayEdm-.mp3">Mưa của trời mây   - KHÁNH PHƯƠNG  </li>
+            <li data-src="assets/music/MuaThang6-ZenPy-4033081.mp3"> Mưa tháng sáu   - ZENPY  </li>
+            <li data-src="assets/music/NhuAnhDaThayEm-PhucXPFreakD-7370334.mp3">  Như anh thấy em    - PHÚCXP  </li>
+            <li data-src="assets/music/PHẢICHIA TAY THÔI .mp3"> Phải chia tay thôi   - TUẤN  HƯNG </li>
+            <li data-src="assets/music/RoiBo.mp3"> Rời bỏ  -HÒA MINZY  </li>
+            <li data-src="assets/music/UThiThoi-TPAME-8901241.mp3"> Ừ thì thôi   - PAME  </li>
+            <li data-src="assets/music/VanSuTuyDuyen-DangNguyen-6039629.mp3"> Vạn sự tùy duyên - DÂNG NGUYỄN  </li>
+            <footer style="text-align: center; padding: 10px;">
+                <p>&copy; Chủ đầu tư ca nhạc VĂN VŨ.</p>
+            </footer>
+        </ul>
+    </div>
+
+    <script>
+        const audio = document.getElementById('main-audio');
+        const playlistItems = document.querySelectorAll('#playlist li');
+        let currentIndex = 0;
+
+        function playTrack(index) {
+            if (playlistItems[index]) {
+                audio.src = playlistItems[index].dataset.src;
+                audio.play().catch(e => console.error("Không thể phát:", e));
+                currentIndex = index;
+            }
+        }
+
+        audio.addEventListener('ended', () => {
+            if (currentIndex + 1 < playlistItems.length) {
+                playTrack(currentIndex + 1);
+            }
+        });
+
+        playlistItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                playTrack(index);
+            });
+        });
+
+        window.addEventListener('load', () => {
+            playTrack(0);
+        });
+        
+
+    </script>
+</body>
+</html>
